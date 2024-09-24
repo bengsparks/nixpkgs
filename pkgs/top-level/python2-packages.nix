@@ -27,8 +27,6 @@ with super;
 
   futures = callPackage ../development/python2-modules/futures { };
 
-  hypothesis = callPackage ../development/python2-modules/hypothesis { };
-
   importlib-metadata = callPackage ../development/python2-modules/importlib-metadata { };
 
   jinja2 = callPackage ../development/python2-modules/jinja2 { };
