@@ -1,13 +1,7 @@
-{
-  lib,
-  buildPythonPackage,
-  bootstrapped-pip,
-  fetchFromGitHub,
-  mock,
-  scripttest,
-  virtualenv,
-  pretend,
-  pytest,
+{ lib
+, buildPythonPackage
+, bootstrapped-pip
+, fetchFromGitHub
 }:
 
 buildPythonPackage rec {
@@ -29,13 +23,6 @@ buildPythonPackage rec {
   # to force it a little.
   pipInstallFlags = [ "--ignore-installed" ];
 
-  nativeCheckInputs = [
-    mock
-    scripttest
-    virtualenv
-    pretend
-    pytest
-  ];
   # Pip wants pytest, but tests are not distributed
   doCheck = false;
 
