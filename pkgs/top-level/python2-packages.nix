@@ -19,8 +19,6 @@ with super;
 
   contextlib2 = callPackage ../development/python2-modules/contextlib2 { };
 
-  coverage = callPackage ../development/python2-modules/coverage { };
-
   enum = callPackage ../development/python2-modules/enum { };
 
   filelock = callPackage ../development/python2-modules/filelock { };
