@@ -63,8 +63,6 @@ with super;
 
   pytest_4 = callPackage ../development/python2-modules/pytest { };
 
-  pytest-xdist = callPackage ../development/python2-modules/pytest-xdist { };
-
   recoll = disabled super.recoll;
 
   rivet = disabled super.rivet;
