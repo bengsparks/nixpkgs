@@ -31,8 +31,6 @@ with super;
 
   markupsafe = callPackage ../development/python2-modules/markupsafe { };
 
-  mock = callPackage ../development/python2-modules/mock { };
-
   more-itertools = callPackage ../development/python2-modules/more-itertools { };
 
   # ninja python stub was created to help simplify python builds using PyPA's
