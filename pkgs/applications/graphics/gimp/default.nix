@@ -82,7 +82,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "gimp";
-  version = "3.0.0-RC1";
+  version = "3.0.0-RC2";
 
   outputs = [
     "out"
@@ -92,7 +92,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "https://download.gimp.org/gimp/v${lib.versions.majorMinor finalAttrs.version}/gimp-${finalAttrs.version}.tar.xz";
-    hash = "sha256-s9CyZMXjjnifqvNBcAM5fzJAAUxZx/QX+co705xf+2Y=";
+    hash = "sha256-9NL5bfGAzlVD+LKzVwe5vxFFnwD3Jspz2i9AbWhtnbc=";
   };
 
   patches = [
@@ -107,7 +107,7 @@ stdenv.mkDerivation (finalAttrs: {
     # TODO: This now only appears to be used on Windows.
     (replaceVars ./hardcode-plugin-interpreters.patch {
       python_interpreter = python.interpreter;
-      PYTHON_PATH = null;
+      PYTHON_EXE = null;
     })
 
     # D-Bus configuration is not available in the build sandbox
