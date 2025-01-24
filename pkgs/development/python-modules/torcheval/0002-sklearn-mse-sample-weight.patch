@@ -1,0 +1,22 @@
+diff --git a/tests/metrics/window/test_mean_squared_error.py b/tests/metrics/window/test_mean_squared_error.py
+index 176731a..be56282 100644
+--- a/tests/metrics/window/test_mean_squared_error.py
++++ b/tests/metrics/window/test_mean_squared_error.py
+@@ -377,7 +377,7 @@ class TestMeanSquaredError(MetricClassTester):
+                     mean_squared_error(
+                         torch.cat(update_target[-2:], dim=0),
+                         torch.cat(update_input[-2:], dim=0),
+-                        torch.cat(update_weight[-2:], dim=0),
++                        sample_weight=torch.cat(update_weight[-2:], dim=0),
+                         multioutput=multioutput,
+                     )
+                 )
+@@ -389,7 +389,7 @@ class TestMeanSquaredError(MetricClassTester):
+                     mean_squared_error(
+                         torch.cat(update_target, dim=0),
+                         torch.cat(update_input, dim=0),
+-                        torch.cat(update_weight, dim=0),
++                        sample_weight=torch.cat(update_weight, dim=0),
+                         multioutput=multioutput,
+                     )
+                 )

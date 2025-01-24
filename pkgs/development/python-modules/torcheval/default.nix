@@ -40,6 +40,19 @@ buildPythonPackage {
     hash = "sha256-FnMSPU8tjXegLH4speeyD8UDrKSvjf8STftt7aXTuJI=";
   };
 
+  # Patches are only applied to calls of sklearn within tests,
+  # which is only used for testing purposes (see dev-requirements.txt)
+  patches = [
+    # sklearn's confusion matrix's `normalize` keyword argument does not support "none".
+    # However, None and "none" appear twice in this test; The only missing case is "all".
+    ./0001-sklearn-cm-normalize.patch
+
+    # sklearn's mean squared error requires naming `sample_weight` due to the asterisk in
+    # mean_squared_error(y_true, y_pred, *, sample_weight=None, ...)
+    #                                   ^^^
+    ./0002-sklearn-mse-sample-weight.patch
+  ];
+
   buildInputs = [ setuptools ];
 
   pythonImportsCheck = [ "torcheval" ];

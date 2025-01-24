@@ -1,0 +1,13 @@
+diff --git a/tests/metrics/functional/classification/test_confusion_matrix.py b/tests/metrics/functional/classification/test_confusion_matrix.py
+index 9286707..9b42438 100644
+--- a/tests/metrics/functional/classification/test_confusion_matrix.py
++++ b/tests/metrics/functional/classification/test_confusion_matrix.py
+@@ -134,7 +134,7 @@ class TestMultiClassConfusionMatrix(unittest.TestCase):
+ 
+         # test normalizations
+         self._test_multiclass_confusion_matrix_with_input(
+-            input, target, num_classes, normalize="none"
++            input, target, num_classes, normalize="all"
+         )
+         self._test_multiclass_confusion_matrix_with_input(
+             input, target, num_classes, normalize=None
