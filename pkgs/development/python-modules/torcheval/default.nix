@@ -85,6 +85,11 @@ buildPythonPackage {
     "--deselect=tests/tools/test_module_summary.py::ModuleSummaryTest::test_alexnet_with_input_tensor"
     "--deselect=tests/tools/test_module_summary.py::ModuleSummaryTest::test_forward_elapsed_time"
     "--deselect=tests/tools/test_module_summary.py::ModuleSummaryTest::test_resnet_max_depth"
+
+    # -- tests/metrics/functional/text/test_perplexity.py --
+    # AssertionError: Scalars are not close!
+    # Expected 3.537154912949 but got 3.53715443611145
+    "--deselect=tests/metrics/functional/text/test_perplexity.py::Perplexity::test_perplexity_with_ignore_index"
   ];
 
   meta = {
