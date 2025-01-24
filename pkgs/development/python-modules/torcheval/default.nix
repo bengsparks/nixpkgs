@@ -75,6 +75,16 @@ buildPythonPackage {
 
   pytestFlagsArray = [
     "tests/"
+
+    # -- tests/tools/test_module_summary.py --
+    # models.alexnet(pretrained=True) -> PermissionError: [Errno 13] Permission denied: '/homeless-shelter'
+    #
+    # Working around this with `preBuild = "export HOME=$(mktemp -d)";` would not help either,
+    # as the tests then reach out to `download.pytorch.org`, which will never work.
+    "--deselect=tests/tools/test_module_summary.py::ModuleSummaryTest::test_alexnet_print"
+    "--deselect=tests/tools/test_module_summary.py::ModuleSummaryTest::test_alexnet_with_input_tensor"
+    "--deselect=tests/tools/test_module_summary.py::ModuleSummaryTest::test_forward_elapsed_time"
+    "--deselect=tests/tools/test_module_summary.py::ModuleSummaryTest::test_resnet_max_depth"
   ];
 
   meta = {
