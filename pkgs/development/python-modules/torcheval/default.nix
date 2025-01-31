@@ -12,6 +12,7 @@
   pytest-timeout,
   cython_0,
   scikit-learn,
+  pytestCheckHook,
   # meta
   lib,
 }:
@@ -41,6 +42,8 @@ buildPythonPackage {
 
   buildInputs = [ setuptools ];
 
+  pythonImportsCheck = [ "torcheval" ];
+
   # requirements.txt
   dependencies = [
     torchtnt
@@ -49,11 +52,16 @@ buildPythonPackage {
 
   # dev-requirements.txt
   nativeCheckInputs = [
+    pytestCheckHook
     numpy
     torchvision
     pytest-timeout
     cython_0
     scikit-learn
+  ];
+
+  pytestFlagsArray = [
+    "tests/"
   ];
 
   meta = {
