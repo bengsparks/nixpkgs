@@ -1,6 +1,7 @@
 {
   # Python package building
   buildPythonPackage,
+  callPackage,
   fetchFromGitHub,
   setuptools,
   # meta
@@ -9,6 +10,14 @@
 let
   pname = "torcheval";
   version = "0.0.6";
+
+  # The torcheval 0.0.6 lib depends on a torchtnt>=0.0.5, however the available versions
+  # of torchtnt on nixpkgs (0.4.2 at the time of writing) are not compatible due to missing methods.
+  #
+  # To remedy this, the torchtnt-nightly commit on Github that was published on the same day as
+  # the torcheval 0.0.6 lib is used in lieu of a properly packaged torchtnt lib,
+  # as it is doubtful that this particular release of torchtnt is useful outside of this package.
+  torchtnt = callPackage ./torchtnt-nightly.nix { };
 in
 buildPythonPackage {
   inherit pname version;
