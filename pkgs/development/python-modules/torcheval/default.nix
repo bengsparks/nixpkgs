@@ -4,6 +4,14 @@
   callPackage,
   fetchFromGitHub,
   setuptools,
+  ## requirements.txt
+  typing-extensions,
+  ## dev-requirements.txt
+  numpy,
+  torchvision,
+  pytest-timeout,
+  cython_0,
+  scikit-learn,
   # meta
   lib,
 }:
@@ -32,6 +40,21 @@ buildPythonPackage {
   };
 
   buildInputs = [ setuptools ];
+
+  # requirements.txt
+  dependencies = [
+    torchtnt
+    typing-extensions
+  ];
+
+  # dev-requirements.txt
+  nativeCheckInputs = [
+    numpy
+    torchvision
+    pytest-timeout
+    cython_0
+    scikit-learn
+  ];
 
   meta = {
     description = "Rich collection of performant PyTorch model metrics, a simple interface to create new metrics, a toolkit to facilitate metric computation in distributed training and tools for PyTorch model evaluations";
