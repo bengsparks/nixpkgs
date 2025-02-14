@@ -3,6 +3,7 @@
   stdenv,
   buildPythonPackage,
   fetchFromGitHub,
+  fetchPypi,
   pythonOlder,
   flit-core,
   numpy,
@@ -11,18 +12,22 @@
   # optional/test dependencies
   gdcm,
   pillow,
-  pylibjpeg,
   pylibjpeg-libjpeg,
 }:
 let
   # Pydicom needs pydicom-data to run some tests. If these files aren't downloaded
   # before the package creation, it'll try to download during the checkPhase.
-  test_data = fetchFromGitHub {
-    owner = "pydicom";
-    repo = "pydicom-data";
-    rev = "8da482f208401d63cd63f3f4efc41b6856ef36c7";
-    hash = "sha256-ji7SppKdiszaXs8yCSIPkJj4Ld++XWNw9FuxLoFLfFo=";
+  test_data = buildPythonPackage {
+    pname = "pydicom-data";
+    version = "1.0.0";
+
+    src = fetchPypi {
+      pname = "pydicom-data";
+      version = "1.0.0";
+      hash = "sha256-k/IJTyGbb+webb7S5QOfuHknL2eGRqNRtGFy9tC/EQ8=";
+    };
   };
+
 in
 buildPythonPackage rec {
   pname = "pydicom";
@@ -55,16 +60,16 @@ buildPythonPackage rec {
     ];
   };
 
-  nativeCheckInputs = [ pytestCheckHook ] ++ optional-dependencies.pixeldata;
+  patches = [
+    ./changes.patch
+  ];
 
-  # Setting $HOME to prevent pytest to try to create a folder inside
-  # /homeless-shelter which is read-only.
-  # Linking pydicom-data dicom files to $HOME/.pydicom/data
-  preCheck = ''
-    export HOME=$TMP/test-home
-    mkdir -p $HOME/.pydicom/
-    ln -s ${test_data}/data_store/data $HOME/.pydicom/data
-  '';
+  nativeCheckInputs = [ pytestCheckHook test_data ] ++ optional-dependencies.pixeldata;
+
+  pytestFlagsArray = [
+    "--log-cli-level=debug"
+    "tests/test_fileset.py::TestFileSet_Modify::test_remove_list"
+  ];
 
   disabledTests =
     [

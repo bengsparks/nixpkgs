@@ -1,0 +1,50 @@
+diff --git a/src/pydicom/config.py b/src/pydicom/config.py
+index b2a5d5895..8b9121aa3 100644
+--- a/src/pydicom/config.py
++++ b/src/pydicom/config.py
+@@ -71,7 +71,7 @@ def debug(debug_on: bool = True, default_handler: bool = True) -> None:
+ 
+ 
+ # force level=WARNING, in case logging default is set differently (issue 103)
+-debug(False, False)
++debug(True, False)
+ 
+ 
+ # Set the type used to hold DS values
+diff --git a/src/pydicom/data/data_manager.py b/src/pydicom/data/data_manager.py
+index 53f89b830..623ee1995 100644
+--- a/src/pydicom/data/data_manager.py
++++ b/src/pydicom/data/data_manager.py
+@@ -345,8 +345,10 @@ def get_testdata_file(
+ def _get_testdata_file(name: str, download: bool = True) -> str | None:
+     # Check pydicom local
+     data_path = Path(DATA_ROOT) / "test_files"
++    print(f"!!! {data_path} !!!")
+     matches = [m for m in data_path.rglob(name)]
+     if matches:
++        print("!!! data_path.rglob", matches, "!!!")
+         return os.fspath(matches[0])
+ 
+     # Check external data sources
+diff --git a/tests/test_fileset.py b/tests/test_fileset.py
+index 9641152a7..66364ba86 100644
+--- a/tests/test_fileset.py
++++ b/tests/test_fileset.py
+@@ -61,11 +61,13 @@ from pydicom.uid import (
+ )
+ 
+ 
+-TEST_FILE = get_testdata_file("DICOMDIR")
+-TINY_ALPHA_FILESET = get_testdata_file("TINY_ALPHA/DICOMDIR")
+-IMPLICIT_TEST_FILE = get_testdata_file("DICOMDIR-implicit")
+-BIGENDIAN_TEST_FILE = get_testdata_file("DICOMDIR-bigEnd")
++TEST_FILE = get_testdata_file("DICOMDIR", download=False)
++TINY_ALPHA_FILESET = get_testdata_file("TINY_ALPHA/DICOMDIR", download=False)
++IMPLICIT_TEST_FILE = get_testdata_file("DICOMDIR-implicit", download=False)
++BIGENDIAN_TEST_FILE = get_testdata_file("DICOMDIR-bigEnd", download=False)
+ 
++from pydicom.config import logger
++logger.debug(f"!!! {TEST_FILE} !!!")
+ 
+ @pytest.fixture
+ def tiny():
