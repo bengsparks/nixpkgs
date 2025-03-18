@@ -2,7 +2,6 @@
   stdenv,
   lib,
   fetchurl,
-  fetchpatch,
   replaceVars,
   meson,
   ninja,
@@ -82,7 +81,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "gimp";
-  version = "3.0.0-RC2";
+  version = "3.0.2";
 
   outputs = [
     "out"
@@ -92,7 +91,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "https://download.gimp.org/gimp/v${lib.versions.majorMinor finalAttrs.version}/gimp-${finalAttrs.version}.tar.xz";
-    hash = "sha256-9NL5bfGAzlVD+LKzVwe5vxFFnwD3Jspz2i9AbWhtnbc=";
+    hash = "sha256-VG3cMMstDnkSPH/LTXghHh7npqrOkaagrYy8v26lcaI=";
   };
 
   patches = [
@@ -114,13 +113,6 @@ stdenv.mkDerivation (finalAttrs: {
     # so we need to pick up the one from the package.
     (replaceVars ./tests-dbus-conf.patch {
       session_conf = "${dbus.out}/share/dbus-1/session.conf";
-    })
-
-    # Fix pkg-config file.
-    # https://gitlab.gnome.org/GNOME/gimp/-/merge_requests/2037
-    (fetchpatch {
-      url = "https://gitlab.gnome.org/GNOME/gimp/-/commit/a18e1806dbc9b180aefabb2c0fae43493f1ef14a.patch";
-      hash = "sha256-BUrPm9lB/aiybB2Sd3TKlJ+59ITMZlNUBXJP5ZdLQ44=";
     })
   ];
 
