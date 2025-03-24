@@ -3,10 +3,16 @@
   stdenv,
   fetchFromGitHub,
   cmake,
-  octave ? null,
-  libiconv,
+  # Optionally build python bindings
+  withPython ? false,
+  # Optionally build octave bindings
+  withOctave ? false,
+  # For retrieving optional dependencies related to the aforementioned bindings
+  pkgs,
 }:
-
+let
+  pythonEnv = pkgs.python3.withPackages (p: [ p.numpy ]);
+in
 stdenv.mkDerivation rec {
   pname = "nlopt";
   version = "2.7.1";
@@ -14,30 +20,32 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "stevengj";
     repo = pname;
-    rev = "v${version}";
+    tag = "v${version}";
     sha256 = "sha256-TgieCX7yUdTAEblzXY/gCN0r6F9TVDh4RdNDjQdXZ1o=";
   };
 
-  nativeBuildInputs = [ cmake ] ++ lib.optionals stdenv.hostPlatform.isDarwin [ libiconv ];
-  buildInputs = [ octave ];
+  nativeBuildInputs =
+    [ cmake ]
+    ## The octave bindings are vendored within the repository, and therefore do not require further effort.
+    ##
+    ## Building the python bindings requires SWIG, and numpy in addition to the CXX routines.
+    ## The tests also make use of the same interpreter to test the bindings.
+    ++ lib.optionals withPython [ pkgs.swig pythonEnv ];
 
-  configureFlags =
-    [
-      "--with-cxx"
-      "--enable-shared"
-      "--with-pic"
-      "--without-guile"
-      "--without-python"
-      "--without-matlab"
-    ]
-    ++ lib.optionals (octave != null) [
-      "--with-octave"
-      "M_INSTALL_DIR=$(out)/${octave.sitePath}/m"
-      "OCT_INSTALL_DIR=$(out)/${octave.sitePath}/oct"
-    ];
+  cmakeFlags = [
+    "-DBUILD_SHARED_LIBS=OFF"
+    "-DNLOPT_CXX=ON"
+    "-DNLOPT_PYTHON=${if withPython then "ON" else "OFF"}"
+    "-DNLOPT_OCTAVE=${if withOctave then "ON" else "OFF"}"
+    "-DNLOPT_MATLAB=OFF"
+    "-DNLOPT_GUILE=OFF"
+    "-DNLOPT_SWIG=${if withPython then "ON" else "OFF"}"
+  ] ++ lib.optional withPython "-DPython_EXECUTABLE=${pythonEnv.interpreter}";
+
+  doCheck = true;
 
   postFixup = ''
-    substituteInPlace $out/lib/cmake/nlopt/NLoptLibraryDepends.cmake --replace \
+    substituteInPlace $out/lib/cmake/nlopt/NLoptLibraryDepends.cmake --replace-fail \
       'INTERFACE_INCLUDE_DIRECTORIES "''${_IMPORT_PREFIX}/' 'INTERFACE_INCLUDE_DIRECTORIES "'
   '';
 
