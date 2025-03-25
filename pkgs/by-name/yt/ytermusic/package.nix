@@ -19,14 +19,12 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-nu/vedQNs5TgCG1v5qwwDTnFTyXCS2KnLVrnEhCtzCs=";
   };
 
-  cargoLock = {
-    lockFile = ./Cargo.lock;
-    outputHashes = {
-      "rusty_ytdl-0.6.6" = "sha256-htXD8v9Yd7S0iLjP6iZu94tP5KO5vbmkdUybqA7OtlU=";
-      "symphonia-0.5.4" = "sha256-uf0BbpqtlpZhsnV7Cm8egxjb/fXSINsOANTjDUQ4U9M=";
-    };
-  };
-  postPatch = "cp ${./Cargo.lock} Cargo.lock";
+  # The `time` crate doesn't build on Rust 1.80+
+  # https://github.com/NixOS/nixpkgs/issues/332957
+  cargoPatches = [ ./time-crate.patch ];
+
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-LuPoOrRmD2DTkZXcBcs0IyhHHbaUM0+yIksFL/QznyY=";
 
   doCheck = true;
 
