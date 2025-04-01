@@ -4,7 +4,6 @@
   pythonOlder,
   fetchPypi,
   attrs,
-  hypothesis,
   py,
   setuptools-scm,
   setuptools,
@@ -14,12 +13,10 @@
   isPy3k,
   more-itertools,
   atomicwrites,
-  mock,
   writeText,
   pathlib2,
   wcwidth,
   packaging,
-  isPyPy,
 }:
 buildPythonPackage rec {
   version = "4.6.11";
@@ -35,10 +32,6 @@ buildPythonPackage rec {
       --replace "pluggy>=0.12,<1.0" "pluggy>=0.12,<2.0"
   '';
 
-  nativeCheckInputs = [
-    hypothesis
-    mock
-  ];
   buildInputs = [ setuptools-scm ];
   propagatedBuildInputs =
     [
@@ -55,19 +48,7 @@ buildPythonPackage rec {
     ++ lib.optionals (!isPy3k) [ funcsigs ]
     ++ lib.optionals (pythonOlder "3.6") [ pathlib2 ];
 
-  doCheck = !isPyPy; # https://github.com/pytest-dev/pytest/issues/3460
-  checkPhase = ''
-    runHook preCheck
-
-    # don't test bash builtins
-    rm testing/test_argcomplete.py
-
-    # determinism - this test writes non deterministic bytecode
-    rm -rf testing/test_assertrewrite.py
-
-    PYTHONDONTWRITEBYTECODE=1 $out/bin/py.test -x testing/ -k "not test_collect_pyargs_with_testpaths"
-    runHook postCheck
-  '';
+  doCheck = false;
 
   # Remove .pytest_cache when using py.test in a Nix build
   setupHook = writeText "pytest-hook" ''

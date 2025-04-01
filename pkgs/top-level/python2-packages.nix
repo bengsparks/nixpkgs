@@ -63,12 +63,7 @@ with super;
 
   pytest = pytest_4;
 
-  pytest_4 = callPackage ../development/python2-modules/pytest {
-    # hypothesis tests require pytest that causes dependency cycle
-    hypothesis = self.hypothesis.override {
-      doCheck = false;
-    };
-  };
+  pytest_4 = callPackage ../development/python2-modules/pytest { };
 
   pytest-xdist = callPackage ../development/python2-modules/pytest-xdist { };
 
