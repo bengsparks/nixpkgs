@@ -15,8 +15,6 @@ with super;
 
   bootstrapped-pip = toPythonModule (callPackage ../development/python2-modules/bootstrapped-pip { });
 
-  cffi = callPackage ../development/python2-modules/cffi { inherit cffi; };
-
   configparser = callPackage ../development/python2-modules/configparser { };
 
   contextlib2 = callPackage ../development/python2-modules/contextlib2 { };
