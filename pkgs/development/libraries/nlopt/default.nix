@@ -113,6 +113,7 @@ stdenv.mkDerivation (finalAttrs: {
       (lib.cmakeBool "NLOPT_GUILE" false)
       (lib.cmakeBool "NLOPT_LUKSAN" (!withoutLuksanSolvers))
       (lib.cmakeBool "NLOPT_TESTS" finalAttrs.doCheck)
+      (lib.cmakeFeature "CMAKE_BUILD_TYPE" "RelWithDebInfo")
     ]
     ++ lib.optional withPython (
       lib.cmakeFeature "Python_EXECUTABLE" "${buildPythonBindingsEnv.interpreter}"
