@@ -4,6 +4,7 @@
   fetchFromGitHub,
   fetchpatch,
   cmake,
+  nix-update-script,
   # Optionally build Python bindings
   withPython ? false,
   python3,
@@ -130,6 +131,8 @@ stdenv.mkDerivation (finalAttrs: {
     substituteInPlace $dev/lib/cmake/nlopt/NLoptLibraryDepends.cmake --replace-fail \
       'INTERFACE_INCLUDE_DIRECTORIES "''${_IMPORT_PREFIX}/' 'INTERFACE_INCLUDE_DIRECTORIES "'
   '';
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     homepage = "https://nlopt.readthedocs.io/en/latest/";
