@@ -9,6 +9,7 @@
 
   buildPackages,
   versionCheckHook,
+  python3Packages,
   nix-update-script,
 }:
 
@@ -74,6 +75,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   );
 
   passthru = {
+    tests.ty-python = python3Packages.ty;
     updateScript = nix-update-script { extraArgs = [ "--version=unstable" ]; };
   };
 
