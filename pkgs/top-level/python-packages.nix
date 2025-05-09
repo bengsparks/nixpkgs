@@ -14605,6 +14605,8 @@ self: super: with self; {
 
   pyzipper = callPackage ../development/python-modules/pyzipper { };
 
+  pyzk = callPackage ../development/python-modules/pyzk { };
+
   pyzmq = callPackage ../development/python-modules/pyzmq { };
 
   pyzstd = callPackage ../development/python-modules/pyzstd { zstd-c = pkgs.zstd; };
