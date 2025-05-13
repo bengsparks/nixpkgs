@@ -16,7 +16,7 @@
   pciutils,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "adriconf";
   version = "2.7.2";
 
@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
     domain = "gitlab.freedesktop.org";
     owner = "mesa";
     repo = "adriconf";
-    rev = "v${version}";
+    tag = "v${finalAttrs.version}";
     sha256 = "sha256-0XTsYeS4tNAnGhuJ81fmjHhFS6fVq1lirui5b+ojxTQ=";
   };
 
@@ -66,4 +66,4 @@ stdenv.mkDerivation rec {
     platforms = platforms.linux;
     mainProgram = "adriconf";
   };
-}
+})
