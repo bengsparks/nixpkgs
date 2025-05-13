@@ -14,6 +14,8 @@
   pugixml,
   libgbm,
   pciutils,
+
+  gtest,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -27,6 +29,21 @@ stdenv.mkDerivation (finalAttrs: {
     tag = "v${finalAttrs.version}";
     sha256 = "sha256-0XTsYeS4tNAnGhuJ81fmjHhFS6fVq1lirui5b+ojxTQ=";
   };
+
+  postPatch = ''
+    substituteInPlace CMakeLists.txt \
+      --replace-fail 'if (ENABLE_UNIT_TESTS)' 'if (BUILD_TESTING)'
+
+    substituteInPlace CMakeLists.txt \
+      --replace-fail 'configure_file(CMakeLists.txt.in' '# configure_file(CMakeLists.txt.in' \
+      --replace-fail 'execute_process(COMMAND ' '# execute_process(COMMAND ' \
+      --replace-fail 'WORKING_DIRECTORY "''${CMAKE_BINARY_DIR}/googletest-download" )' '# WORKING_DIRECTORY "''${CMAKE_BINARY_DIR}/googletest-download" )' \
+      --replace-fail 'add_subdirectory("' '# add_subdirectory("'
+
+    substituteInPlace tests/CMakeLists.txt \
+      --replace-fail 'enable_testing()' 'include(CTest)' \
+      --replace-fail 'target_compile_options(runUnitTests PRIVATE -Wall -Wextra -pedantic)' 'add_test(NAME runUnitTests COMMAND runUnitTests)'
+  '';
 
   nativeBuildInputs = [
     cmake
@@ -45,8 +62,13 @@ stdenv.mkDerivation (finalAttrs: {
     pciutils
   ];
 
-  # tries to download googletest
-  cmakeFlags = [ "-DENABLE_UNIT_TESTS=off" ];
+  cmakeFlags = [
+    (lib.cmakeBool "BUILD_TESTING" finalAttrs.doCheck)
+  ];
+
+  checkInputs = [ gtest ];
+
+  doCheck = true;
 
   postInstall = ''
     install -Dm444 ../flatpak/org.freedesktop.adriconf.metainfo.xml \
