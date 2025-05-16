@@ -1,6 +1,6 @@
 {
   lib,
-  pkgs,
+  uv,
   buildPythonPackage,
   rustPlatform,
   callPackage,
@@ -10,11 +10,10 @@ buildPythonPackage {
   pname = "uv-build";
   pyproject = true;
 
-  inherit (pkgs.uv)
+  inherit (uv)
     version
     src
     cargoDeps
-    cargoBuildFlags
     ;
 
   nativeBuildInputs = [
@@ -33,12 +32,12 @@ buildPythonPackage {
   doCheck = false;
 
   # Run the tests of a package built by `uv_build`.
-  passthru.tests.built-by-uv = callPackage ./built-by-uv.nix { inherit (pkgs) uv; };
+  passthru.tests.built-by-uv = callPackage ./built-by-uv.nix { inherit uv; };
 
   meta = {
     description = "A minimal build backend for uv";
     homepage = "https://docs.astral.sh/uv/reference/settings/#build-backend";
-    inherit (pkgs.uv.meta) changelog license;
+    inherit (uv.meta) changelog license;
     maintainers = with lib.maintainers; [ bengsparks ];
   };
 }

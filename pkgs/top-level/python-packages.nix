@@ -18605,7 +18605,7 @@ self: super: with self; {
 
   uv = callPackage ../development/python-modules/uv { };
 
-  uv-build = callPackage ../development/python-modules/uv-build { };
+  uv-build = callPackage ../development/python-modules/uv-build { inherit (pkgs) uv; };
 
   uv-dynamic-versioning = callPackage ../development/python-modules/uv-dynamic-versioning { };
 
