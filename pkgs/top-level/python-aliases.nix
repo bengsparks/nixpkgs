@@ -688,6 +688,7 @@ mapAliases ({
   ruamel_base = ruamel-base; # added 2021-11-01
   ruamel_yaml = ruamel-yaml; # added 2021-11-01
   ruamel_yaml_clib = ruamel-yaml-clib; # added 2021-11-01
+  ruff = throw "ruff's python package exists solely to distribute the ruff binary."; # Added 2025-05-17
   ruff-lsp = throw "ruff-lsp has been deprecated, use `ruff server` instead"; # added 2025-04-21
   runway-python = throw "SDK has been deprecated and was archived by upstream"; # added 2023-05-03
   safe = throw "safe has been removed, it was unmaintained sinced October 2019"; # added 2024-07-28
