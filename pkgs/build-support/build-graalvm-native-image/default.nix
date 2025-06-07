@@ -67,7 +67,7 @@ lib.extendMkDerivation {
         removeReferencesTo
       ];
 
-      # propagatedBuildInput from `graalvmPackages.graalvm-ce` does not reach here
+      # propagatedBuildInput from `graalvmDrv ? graalvmPackages.graalvm-ce` does not reach here
       buildInputs = [ zlib ];
 
       nativeImageArgs = nativeImageBuildArgs ++ extraNativeImageBuildArgs ++ [ graalvmXmx ];
