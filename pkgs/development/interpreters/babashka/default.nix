@@ -1,7 +1,6 @@
 {
   lib,
   buildGraalvmNativeImage,
-  graalvmPackages,
   fetchurl,
   writeScript,
   installShellFiles,
