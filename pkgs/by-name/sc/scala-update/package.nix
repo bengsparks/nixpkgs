@@ -22,7 +22,7 @@ buildGraalvmNativeImage (finalAttrs: {
   buildPhase = ''
     runHook preBuild
 
-    native-image ''${nativeImageBuildArgs[@]} -cp $(JARS=("${finalAttrs.finalPackage.passthru.deps}/share/java"/*.jar); IFS=:; echo "''${JARS[*]}")
+    native-image ''${nativeImageArgs[@]} -cp $(JARS=("${finalAttrs.finalPackage.passthru.deps}/share/java"/*.jar); IFS=:; echo "''${JARS[*]}")
 
     runHook postBuild
   '';

@@ -5,14 +5,18 @@
   glibcLocales,
   removeReferencesTo,
   graalvmPackages,
+  zlib,
 }:
 
 lib.extendMkDerivation {
   constructDrv = stdenv.mkDerivation;
 
   excludeDrvArgNames = [
+    "executable"
     "extraNativeImageBuildArgs"
     "graalvmDrv"
+    "graalvmXmx"
+    "nativeImageBuildArgs"
   ];
 
   extendDrvArgs =
@@ -25,20 +29,31 @@ lib.extendMkDerivation {
       # The GraalVM derivation to use
       graalvmDrv ? graalvmPackages.graalvm-ce,
 
+      executable ? finalAttrs.meta.mainProgram,
+
+      # Default native-image arguments. You probably don't want to set this,
+      # except in special cases. In most cases, use extraNativeBuildArgs instead
+      nativeImageBuildArgs ? [
+        (lib.optionalString stdenv.hostPlatform.isDarwin "-H:-CheckToolchain")
+        (lib.optionalString (
+          stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64
+        ) "-H:PageSize=64K")
+        "-H:Name=${executable}"
+        "-march=compatibility"
+        "--verbose"
+      ],
+
       # Extra arguments to be passed to the native-image
       extraNativeImageBuildArgs ? [ ],
+
+      # XMX size of GraalVM during build
+      graalvmXmx ? "-J-Xmx6g",
 
       env ? { },
       meta ? { },
       passthru ? { },
       ...
     }@args:
-    let
-      executable = finalAttrs.meta.mainProgram;
-
-      # XMX size of GraalVM during build
-      graalvmXmx = "-J-Xmx6g";
-    in
     {
       env = {
         LC_ALL = "en_US.UTF-8";
@@ -52,28 +67,16 @@ lib.extendMkDerivation {
         removeReferencesTo
       ];
 
-      # Default native-image arguments. You probably don't want to set this,
-      # except in special cases. In most cases, use extraNativeBuildArgs instead
-      nativeImageBuildArgs =
-        args.nativeImageBuildArgs or (
-          [
-            (lib.optionalString stdenv.hostPlatform.isDarwin "-H:-CheckToolchain")
-            (lib.optionalString (
-              stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64
-            ) "-H:PageSize=64K")
-            "-H:Name=${executable}"
-            "-march=compatibility"
-            "--verbose"
-          ]
-          ++ extraNativeImageBuildArgs
-          ++ [ graalvmXmx ]
-        );
+      # propagatedBuildInput from `graalvmPackages.graalvm-ce` does not reach here
+      buildInputs = [ zlib ];
+
+      nativeImageArgs = nativeImageBuildArgs ++ extraNativeImageBuildArgs ++ [ graalvmXmx ];
 
       buildPhase =
         args.buildPhase or ''
           runHook preBuild
 
-          native-image -jar "$src" ''${nativeImageBuildArgs[@]}
+          native-image -jar "$src" ''${nativeImageArgs[@]}
 
           runHook postBuild
         '';
