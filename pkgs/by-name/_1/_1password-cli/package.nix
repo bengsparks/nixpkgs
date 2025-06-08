@@ -48,7 +48,6 @@ stdenv.mkDerivation {
   nativeBuildInputs =
     [
       installShellFiles
-      versionCheckHook
     ]
     ++ lib.optional stdenv.hostPlatform.isLinux autoPatchelfHook
     ++ lib.optional stdenv.hostPlatform.isDarwin [
@@ -78,8 +77,9 @@ stdenv.mkDerivation {
   dontStrip = stdenv.hostPlatform.isDarwin;
 
   doInstallCheck = true;
-
-  versionCheckProgram = "${builtins.placeholder "out"}/bin/${mainProgram}";
+  nativeInstallCheckInputs = [
+    versionCheckHook
+  ];
   versionCheckProgramArg = "--version";
 
   passthru = {
