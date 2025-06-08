@@ -34,8 +34,6 @@ buildGoModule rec {
 
   doInstallCheck = true;
 
-  versionCheckProgram = "${placeholder "out"}/bin/nats";
-
   meta = with lib; {
     description = "NATS Command Line Interface";
     homepage = "https://github.com/nats-io/natscli";
