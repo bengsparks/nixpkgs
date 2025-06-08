@@ -55,7 +55,6 @@ python3Packages.buildPythonApplication rec {
   nativeCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/rich";
   versionCheckProgramArg = "--version";
 
   passthru = {
