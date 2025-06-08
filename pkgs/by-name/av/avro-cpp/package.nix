@@ -38,7 +38,6 @@ stdenv.mkDerivation rec {
     versionCheckHook
   ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/avrogencpp";
   versionCheckProgramArg = "--version";
 
   meta = {
