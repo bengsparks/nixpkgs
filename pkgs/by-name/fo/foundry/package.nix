@@ -38,7 +38,6 @@ rustPlatform.buildRustPackage rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/forge";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
@@ -67,5 +66,6 @@ rustPlatform.buildRustPackage rec {
       msanft
     ];
     platforms = lib.platforms.unix;
+    mainProgram = "forge";
   };
 }
