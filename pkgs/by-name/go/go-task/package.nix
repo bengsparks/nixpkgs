@@ -48,13 +48,13 @@ buildGoModule (finalAttrs: {
     versionCheckHook
   ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/task";
   versionCheckProgramArg = "--version";
 
   passthru.updateScript = nix-update-script { };
 
   meta = with lib; {
     homepage = "https://taskfile.dev/";
+    mainProgram = "task";
     description = "Task runner / simpler Make alternative written in Go";
     changelog = "https://github.com/go-task/task/blob/v${finalAttrs.version}/CHANGELOG.md";
     license = licenses.mit;
