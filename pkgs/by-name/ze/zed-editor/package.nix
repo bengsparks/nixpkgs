@@ -303,7 +303,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/zeditor";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
