@@ -60,7 +60,6 @@ rustPlatform.buildRustPackage rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = [ "${placeholder "out"}/bin/golem-cli" ];
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
