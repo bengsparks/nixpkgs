@@ -36,7 +36,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/spacetime";
   versionCheckProgramArg = "--version";
 
   postInstall = ''
