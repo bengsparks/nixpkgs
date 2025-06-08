@@ -56,7 +56,6 @@ stdenvNoCC.mkDerivation {
   # FIXME: error when running `env -i up`:
   # "up: error: $HOME is not defined"
   doInstallCheck = false;
-  versionCheckProgram = "${placeholder "out"}/bin/up";
   versionCheckProgramArg = "version";
 
   nativeInstallCheckInputs = [
