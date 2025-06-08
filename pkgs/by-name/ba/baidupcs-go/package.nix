@@ -28,7 +28,6 @@ buildGoModule rec {
     versionCheckHook
   ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/${meta.mainProgram}";
 
   postInstall = ''
     rm -f $out/bin/AndroidNDKBuild
