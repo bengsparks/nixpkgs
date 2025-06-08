@@ -60,7 +60,6 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/geteduroam-gui";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
