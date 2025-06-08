@@ -77,7 +77,6 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/databricks";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
