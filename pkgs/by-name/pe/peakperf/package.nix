@@ -60,8 +60,6 @@ stdenv.mkDerivation (finalAttrs: {
 
   doInstallCheck = true;
 
-  versionCheckProgram = "${placeholder "out"}/bin/peakperf";
-
   meta = {
     homepage = "https://github.com/Dr-Noob/peakperf";
     description = "Achieve peak performance on x86 CPUs and NVIDIA GPUs";
