@@ -23,8 +23,6 @@ rustPlatform.buildRustPackage rec {
 
   doInstallCheck = true;
 
-  versionCheckProgram = [ "${placeholder "out"}/bin/rcat" ];
-
   meta = with lib; {
     description = "Port listener and reverse shell";
     homepage = "https://github.com/robiot/rustcat";
