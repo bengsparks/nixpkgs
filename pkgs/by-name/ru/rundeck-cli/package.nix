@@ -39,7 +39,6 @@ stdenv.mkDerivation (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/rd";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
