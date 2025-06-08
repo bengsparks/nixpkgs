@@ -58,7 +58,6 @@ stdenv.mkDerivation rec {
   ];
 
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/xed";
 
   meta = with lib; {
     description = "Light weight text editor from Linux Mint";
