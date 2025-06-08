@@ -43,7 +43,6 @@ buildGoModule rec {
 
   nativeInstallCheckInputs = [ versionCheckHook ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/${meta.mainProgram}";
 
   postInstall =
     ''
