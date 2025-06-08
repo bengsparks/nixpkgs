@@ -21,7 +21,6 @@ rustPlatform.buildRustPackage rec {
     versionCheckHook
   ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/${meta.mainProgram}";
 
   meta = {
     maintainers = with lib.maintainers; [ xddxdd ];
