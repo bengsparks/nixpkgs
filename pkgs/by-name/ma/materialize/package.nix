@@ -169,7 +169,6 @@ rustPlatform.buildRustPackage rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/environmentd";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
