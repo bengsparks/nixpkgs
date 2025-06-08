@@ -88,7 +88,6 @@ buildPythonPackage rec {
     writableTmpDirAsHomeHook
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/cxfreeze";
   versionCheckProgramArg = "--version";
 
   preCheck = ''
