@@ -37,7 +37,6 @@ buildNpmPackage rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/neovim-node-host";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
