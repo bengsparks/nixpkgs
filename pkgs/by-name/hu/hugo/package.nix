@@ -69,7 +69,6 @@ buildGoModule (finalAttrs: {
     versionCheckHook
   ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/hugo";
   versionCheckProgramArg = "version";
 
   passthru.updateScript = nix-update-script { };
