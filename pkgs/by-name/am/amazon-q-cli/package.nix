@@ -65,7 +65,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/amazon-q";
   versionCheckProgramArg = "--version";
 
   meta = {
