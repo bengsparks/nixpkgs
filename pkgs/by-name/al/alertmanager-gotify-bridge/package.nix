@@ -25,7 +25,6 @@ buildGoModule rec {
   ];
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/alertmanager_gotify_bridge";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
