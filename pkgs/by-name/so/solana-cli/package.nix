@@ -90,7 +90,6 @@ rustPlatform.buildRustPackage rec {
   doInstallCheck = true;
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/solana";
   versionCheckProgramArg = "--version";
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
@@ -129,6 +128,7 @@ rustPlatform.buildRustPackage rec {
       aikooo7
     ];
     platforms = platforms.unix;
+    mainProgram = "solana";
   };
 
   passthru.updateScript = nix-update-script { };
