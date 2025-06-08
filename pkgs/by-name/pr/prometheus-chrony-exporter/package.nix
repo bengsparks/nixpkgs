@@ -43,7 +43,6 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [ versionCheckHook ];
 
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/chrony_exporter";
   versionCheckProgramArg = "--version";
 
   meta = {
