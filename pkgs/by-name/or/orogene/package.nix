@@ -45,7 +45,6 @@ rustPlatform.buildRustPackage rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/oro";
   versionCheckProgramArg = "--version";
 
   meta = with lib; {
