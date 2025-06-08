@@ -50,7 +50,6 @@ stdenv.mkDerivation {
 
   nativeInstallCheckInputs = [ versionCheckHook ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/envoy";
   versionCheckProgramArg = "--version";
 
   passthru = {
