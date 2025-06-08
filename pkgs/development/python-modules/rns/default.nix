@@ -44,7 +44,6 @@ buildPythonPackage rec {
   nativeCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/rncp";
   versionCheckProgramArg = "--version";
 
   meta = {
@@ -58,5 +57,6 @@ buildPythonPackage rec {
       fab
       qbit
     ];
+    mainProgram = "rncp";
   };
 }
