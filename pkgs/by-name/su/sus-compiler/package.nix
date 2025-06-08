@@ -31,7 +31,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/sus_compiler";
 
   updateScript = nix-update-script { extraArgs = [ "--generate-lockfile" ]; };
 
