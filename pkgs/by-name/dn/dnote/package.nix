@@ -109,7 +109,6 @@ buildGoModule rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/dnote-cli";
   versionCheckProgramArg = "version";
   # Fails on darwin:
   # panic: initializing context: initializing files: creating the dnote dir:
@@ -130,5 +129,6 @@ buildGoModule rec {
       gpl3Only
       agpl3Only
     ];
+    mainProgram = "dnote-cli";
   };
 }
