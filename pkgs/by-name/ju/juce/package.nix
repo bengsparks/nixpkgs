@@ -85,7 +85,6 @@ stdenv.mkDerivation (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/juceaide";
   versionCheckProgramArg = "version";
   doInstallCheck = true;
 
