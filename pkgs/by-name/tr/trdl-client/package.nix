@@ -34,7 +34,6 @@ buildGoModule (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/trdl";
   versionCheckProgramArg = "version";
 
   meta = {
