@@ -110,7 +110,6 @@ buildPythonPackage rec {
     versionCheckHook
     writableTmpDirAsHomeHook
   ] ++ optional-dependencies.all;
-  versionCheckProgram = "${placeholder "out"}/bin/pylsp";
   versionCheckProgramArg = "--version";
 
   disabledTests = [
