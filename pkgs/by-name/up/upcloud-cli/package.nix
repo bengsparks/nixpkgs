@@ -31,7 +31,6 @@ buildGoModule rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/upctl";
   versionCheckProgramArg = "version";
   doInstallCheck = true;
 
