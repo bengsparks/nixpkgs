@@ -24,7 +24,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   checkFlags = [ "--skip=options::tests::test_detect_display_width" ];
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/difft";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
