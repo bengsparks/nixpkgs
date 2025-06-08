@@ -21,7 +21,6 @@ rustPlatform.buildRustPackage rec {
   cargoHash = "sha256-Vrd5Iv4KTXNmcKDTk9i1diSFhmampncELEGckmwsf3o=";
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/wat_server";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
