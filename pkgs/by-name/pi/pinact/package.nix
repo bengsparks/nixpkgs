@@ -43,7 +43,6 @@ buildGoModule (finalAttrs: {
     versionCheckHook
   ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/${mainProgram}";
   versionCheckProgramArg = "version";
 
   passthru = {
