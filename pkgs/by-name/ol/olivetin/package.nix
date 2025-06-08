@@ -117,7 +117,6 @@ buildGoModule (
     '';
 
     nativeInstallCheckInputs = [ versionCheckHook ];
-    versionCheckProgram = "${placeholder "out"}/bin/OliveTin";
     versionCheckProgramArg = "-version";
     doInstallCheck = true;
 
