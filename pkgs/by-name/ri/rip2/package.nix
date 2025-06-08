@@ -30,7 +30,6 @@ rustPlatform.buildRustPackage rec {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/rip";
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
     installShellCompletion --cmd rip \
       --bash <($out/bin/rip completions bash) \
