@@ -47,7 +47,6 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     dpkg
     autoPatchelfHook
-    versionCheckHook
     makeWrapper
     copyDesktopItems
     desktop-file-utils
@@ -111,7 +110,7 @@ stdenv.mkDerivation rec {
   '';
 
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/${meta.mainProgram}";
+  nativeInstallCheckInputs = [ versionCheckHook ];
   versionCheckProgramArg = "--version";
 
   passthru = {
