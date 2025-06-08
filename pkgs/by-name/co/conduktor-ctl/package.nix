@@ -42,8 +42,6 @@ buildGoModule rec {
 
   nativeInstallCheckInputs = [ versionCheckHook ];
 
-  versionCheckProgram = "${placeholder "out"}/bin/conduktor";
-
   versionCheckProgramArg = "version";
 
   meta = {
