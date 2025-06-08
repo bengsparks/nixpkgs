@@ -30,7 +30,6 @@ stdenv.mkDerivation rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/upnpc";
   doInstallCheck = true;
 
   doCheck = !stdenv.hostPlatform.isFreeBSD;
