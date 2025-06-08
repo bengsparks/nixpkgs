@@ -97,7 +97,6 @@ stdenv.mkDerivation (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = [ "${placeholder "out"}/bin/protoc" ];
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
