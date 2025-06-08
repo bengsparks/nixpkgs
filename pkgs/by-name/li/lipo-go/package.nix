@@ -29,7 +29,6 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/lipo";
   versionCheckProgramArg = "-version";
   doInstallCheck = true;
 
