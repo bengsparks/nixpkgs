@@ -31,7 +31,6 @@ buildGoModule (finalAttrs: {
   nativeBuildInputs = [ installShellFiles ];
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/flux-operator-mcp";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
