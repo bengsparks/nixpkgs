@@ -30,7 +30,6 @@ buildDotnetModule rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/VrcAdvert";
 
   passthru.updateScript = nix-update-script { };
 
