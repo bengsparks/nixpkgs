@@ -59,7 +59,6 @@ stdenv.mkDerivation (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/codeium_language_server";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
