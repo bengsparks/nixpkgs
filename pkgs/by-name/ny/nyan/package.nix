@@ -35,7 +35,6 @@ stdenv.mkDerivation (finalAttrs: {
   nativeInstallCheckHooks = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/nyancat";
   doInstallCheck = true;
 
   passthru = {
