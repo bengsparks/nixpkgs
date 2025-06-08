@@ -33,7 +33,6 @@ buildGoModule rec {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/woke";
   versionCheckProgramArg = "--version";
 
   meta = {
