@@ -47,7 +47,6 @@ stdenv.mkDerivation rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/unfsd";
   versionCheckProgramArg = "-h";
   doInstallCheck = true;
 
