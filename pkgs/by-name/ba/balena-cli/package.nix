@@ -57,7 +57,6 @@ buildNpmPackage' rec {
     ];
 
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/balena";
 
   meta = {
     description = "Command line interface for balenaCloud or openBalena";
