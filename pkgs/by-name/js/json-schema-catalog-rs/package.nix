@@ -22,7 +22,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/json-schema-catalog";
   versionCheckProgramArg = "--version";
 
   passthru = {
