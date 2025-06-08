@@ -69,7 +69,6 @@ buildPythonPackage rec {
     pytestCheckHook
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/toggl";
   versionCheckProgramArg = "--version";
 
   disabledTests = [
