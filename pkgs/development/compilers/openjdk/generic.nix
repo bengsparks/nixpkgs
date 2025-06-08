@@ -486,8 +486,6 @@ stdenv.mkDerivation (finalAttrs: {
       DISABLE_HOTSPOT_OS_VERSION_CHECK = "ok";
     };
 
-  ${if atLeast23 then "versionCheckProgram" else null} = "${placeholder "out"}/bin/java";
-
   ${if !atLeast11 then "doCheck" else null} = false; # fails with "No rule to make target 'y'."
 
   doInstallCheck = atLeast23;
