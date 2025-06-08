@@ -132,7 +132,6 @@ stdenv.mkDerivation (finalAttrs: {
     ++ lib.optional (!withGlslang) "-DSLANG_ENABLE_SLANG_GLSLANG=OFF";
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/slangc";
   versionCheckProgramArg = "-v";
   doInstallCheck = true;
 
