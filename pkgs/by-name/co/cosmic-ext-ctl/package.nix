@@ -22,7 +22,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/cosmic-ctl";
 
   passthru.updateScript = nix-update-script { };
 
