@@ -41,7 +41,6 @@ buildGoModule (finalAttrs: {
   '';
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/crx3";
   versionCheckProgramArg = "version";
   doInstallCheck = true;
 
