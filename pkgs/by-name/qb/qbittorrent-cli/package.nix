@@ -37,7 +37,6 @@ buildDotnetModule {
     versionCheckHook
   ];
 
-  versionCheckProgram = "${placeholder "out"}/bin/qbt";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
