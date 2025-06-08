@@ -113,7 +113,6 @@ python3Packages.buildPythonApplication rec {
     ++ [
       versionCheckHook
     ];
-  versionCheckProgram = "${placeholder "out"}/bin/tahoe";
   versionCheckProgramArg = "--version";
 
   checkPhase = ''
