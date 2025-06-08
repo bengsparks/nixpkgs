@@ -24,7 +24,6 @@ buildRubyGem rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/bundler";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
