@@ -30,8 +30,6 @@ rustPlatform.buildRustPackage rec {
       --replace-fail 'Some("one.one.one.one".to_string())' 'None'
   '';
 
-  versionCheckProgram = [ "${placeholder "out"}/bin/arp-scan" ];
-
   versionCheckProgramArg = "--version";
 
   doInstallCheck = true;
