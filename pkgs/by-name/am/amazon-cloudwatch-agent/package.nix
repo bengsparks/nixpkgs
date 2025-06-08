@@ -1,6 +1,5 @@
 {
   lib,
-  amazon-cloudwatch-agent,
   buildGoModule,
   fetchFromGitHub,
   nix-update-script,
@@ -42,8 +41,6 @@ buildGoModule rec {
   doInstallCheck = true;
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-
-  versionCheckProgram = "${builtins.placeholder "out"}/bin/amazon-cloudwatch-agent";
 
   versionCheckProgramArg = "-version";
 
