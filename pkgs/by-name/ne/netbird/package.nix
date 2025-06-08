@@ -98,7 +98,6 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/${finalAttrs.meta.mainProgram}";
   versionCheckProgramArg = "version";
   # Disabled for the `netbird-ui` version because it does a network request.
   doInstallCheck = !ui;
