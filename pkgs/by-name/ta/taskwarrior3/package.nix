@@ -94,8 +94,6 @@ stdenv.mkDerivation (finalAttrs: {
     versionCheckHook
   ];
 
-  versionCheckProgram = "${placeholder "out"}/bin/${finalAttrs.meta.mainProgram}";
-
   postInstall = ''
     # ZSH is installed automatically from some reason, only bash and fish need
     # manual installation
