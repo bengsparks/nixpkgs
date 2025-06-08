@@ -180,7 +180,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/mistralrs-server";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
