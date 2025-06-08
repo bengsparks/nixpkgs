@@ -51,7 +51,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/komac";
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
     installShellCompletion --cmd komac \
