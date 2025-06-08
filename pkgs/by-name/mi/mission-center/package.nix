@@ -148,7 +148,6 @@ stdenv.mkDerivation rec {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${builtins.placeholder "out"}/bin/${meta.mainProgram}";
   doInstallCheck = true;
 
   env = {
