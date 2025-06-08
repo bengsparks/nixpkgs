@@ -57,7 +57,6 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/bao";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
