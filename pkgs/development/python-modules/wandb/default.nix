@@ -104,7 +104,6 @@ let
     nativeInstallCheckInputs = [
       versionCheckHook
     ];
-    versionCheckProgram = "${placeholder "out"}/bin/gpu_stats";
     versionCheckProgramArg = "--version";
     doInstallCheck = true;
 
