@@ -27,7 +27,6 @@ buildGoModule (finalAttrs: {
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/atlantis";
   versionCheckProgramArg = "version";
 
   meta = {
