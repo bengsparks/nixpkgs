@@ -18,7 +18,6 @@ buildDotnetModule (finalAttrs: {
   projectFile = "Obj2Tiles/Obj2Tiles.csproj";
   nugetDeps = ./deps.json;
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/Obj2Tiles";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
   meta = {
