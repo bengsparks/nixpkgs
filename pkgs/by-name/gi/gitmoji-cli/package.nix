@@ -37,7 +37,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   nativeInstallCheckInputs = [ versionCheckHook ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/gitmoji";
 
   passthru.updateScript = nix-update-script { };
 
