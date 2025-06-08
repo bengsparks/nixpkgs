@@ -29,7 +29,6 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [ versionCheckHook ];
 
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/opnborg";
   versionCheckProgramArg = "--version";
 
   meta = {
