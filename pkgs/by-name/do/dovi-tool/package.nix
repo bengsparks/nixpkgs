@@ -38,7 +38,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/dovi_tool";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
