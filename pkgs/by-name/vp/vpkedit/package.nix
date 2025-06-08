@@ -126,7 +126,6 @@ stdenv.mkDerivation (finalAttrs: {
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgram = "${placeholder "out"}/bin/vpkeditcli";
   doInstallCheck = true;
 
   meta = {
