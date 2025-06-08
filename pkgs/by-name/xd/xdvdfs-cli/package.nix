@@ -23,7 +23,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   cargoTestFlags = [ "--package xdvdfs-cli" ];
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/xdvdfs";
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
