@@ -101,7 +101,6 @@ python3Packages.buildPythonApplication rec {
     "tests/internals/cascache.py"
   ];
 
-  versionCheckProgram = "${placeholder "out"}/bin/bst";
   versionCheckProgramArg = "--version";
 
   meta = {
