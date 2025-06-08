@@ -46,7 +46,6 @@ python3Packages.buildPythonApplication rec {
     ++ [
       versionCheckHook
     ];
-  versionCheckProgram = "${placeholder "out"}/bin/gpt";
   versionCheckProgramArg = "--version";
 
   meta = {
