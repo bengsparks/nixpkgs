@@ -89,7 +89,6 @@ stdenv.mkDerivation (finalAttrs: {
   # FIXME: error when running `env -i envision`:
   # "HOME env var not defined: NotPresent"
   doInstallCheck = false;
-  versionCheckProgram = "${placeholder "out"}/bin/envision";
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
