@@ -35,7 +35,6 @@ stdenv.mkDerivation (finalAttrs: {
   );
 
   nativeInstallCheckInputs = [ versionCheckHook ];
-  versionCheckProgram = "${placeholder "out"}/bin/snac";
   doInstallCheck = true;
 
   passthru = {
