@@ -24,7 +24,6 @@ rustPlatform.buildRustPackage rec {
     versionCheckHook
   ];
   doInstallCheck = true;
-  versionCheckProgram = "${placeholder "out"}/bin/${meta.mainProgram}";
   versionCheckProgramArg = "--version";
 
   passthru = {
