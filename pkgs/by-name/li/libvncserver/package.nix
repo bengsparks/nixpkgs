@@ -44,6 +44,7 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.cmakeBool "WITH_SYSTEMD" withSystemd)
     (lib.cmakeBool "BUILD_SHARED_LIBS" enableShared)
     (lib.cmakeBool "WITH_EXAMPLES" buildExamples)
+    (lib.cmakeBool "WITH_TESTS" enableShared)
   ];
 
   buildInputs =
