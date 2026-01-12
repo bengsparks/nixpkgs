@@ -7,20 +7,20 @@
   nix-update-script,
   versionCheckHook,
 }:
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "sea-orm-cli";
-  version = "1.1.19";
+  version = "2.0.0-rc.28";
 
   src = fetchCrate {
-    inherit pname version;
-    hash = "sha256-dsise5MDhR4pcD3ZWDUzTG0Q4Fg/VdKw2Q59/g6BabA=";
+    inherit (finalAttrs) pname version;
+    hash = "sha256-mLYB0BdtSD7wrttsUR8g+11nazru85DDdnWCmPMAu4o=";
   };
 
   nativeBuildInputs = [ pkg-config ];
 
   buildInputs = [ openssl ];
 
-  cargoHash = "sha256-38KIJYwRvVmChGSJwaRRWbb/HPuuTp/qnvXpo3xjRpE=";
+  cargoHash = "sha256-uHbpG+wQcbCmzgqgGsruYeYM+n3Hw8+Ayo6echtBN4U=";
 
   nativeInstallCheckInputs = [ versionCheckHook ];
   doInstallCheck = true;
@@ -43,4 +43,4 @@ rustPlatform.buildRustPackage rec {
       traxys
     ];
   };
-}
+})
