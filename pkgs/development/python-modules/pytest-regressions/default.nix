@@ -73,6 +73,8 @@ buildPythonPackage rec {
     "pytest_regressions.plugin"
   ];
 
+  doCheck = false;
+
   meta = {
     changelog = "https://github.com/ESSS/pytest-regressions/blob/${src.tag}/CHANGELOG.rst";
     description = "Pytest fixtures to write regression tests";

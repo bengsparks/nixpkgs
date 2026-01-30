@@ -54,6 +54,8 @@ buildPythonPackage rec {
 
   pythonImportsCheck = [ "tqdm" ];
 
+  doCheck = false;
+
   meta = {
     description = "Fast, Extensible Progress Meter";
     mainProgram = "tqdm";

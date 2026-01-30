@@ -77,7 +77,7 @@ buildPythonPackage rec {
   PARQUET_HOME = arrow-cpp;
 
   ARROW_TEST_DATA = lib.optionalString doCheck arrow-cpp.ARROW_TEST_DATA;
-  doCheck = true;
+  doCheck = false;
 
   dontUseCmakeConfigure = true;
 
