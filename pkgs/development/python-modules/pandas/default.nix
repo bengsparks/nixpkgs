@@ -19,6 +19,8 @@
   tzdata,
 
   # optionals
+  adbc-driver-postgresql,
+  # adbc-driver-sqlite,
   beautifulsoup4,
   bottleneck,
   blosc2,
@@ -37,6 +39,7 @@
   pymysql,
   pyqt5,
   pyreadstat,
+  python-calamine,
   pyxlsb,
   qtpy,
   s3fs,
@@ -63,14 +66,14 @@
 let
   pandas = buildPythonPackage rec {
     pname = "pandas";
-    version = "2.3.3";
+    version = "3.0.0";
     pyproject = true;
 
     src = fetchFromGitHub {
       owner = "pandas-dev";
       repo = "pandas";
       tag = "v${version}";
-      hash = "sha256-jY1uM9HmJzoFk26ilbtzJnxAsQhmXS19r73JcFeFWRQ=";
+      hash = "sha256-sUOPZZalTJBJwcqyXwDkmT9UX7Ni71vUa3YdFRwSiJY=";
     };
 
     # A NOTE regarding the Numpy version relaxing: Both Numpy versions 1.x &
@@ -86,7 +89,7 @@ let
     # that override globally the `numpy` attribute to point to `numpy_1`.
     postPatch = ''
       substituteInPlace pyproject.toml \
-        --replace-fail "numpy>=2.0" numpy
+        --replace-fail "numpy>=2.0.0" numpy
     '';
 
     build-system = [
@@ -125,20 +128,15 @@ let
           excel = [
             odfpy
             openpyxl
+            python-calamine
             pyxlsb
             xlrd
             xlsxwriter
           ];
           feather = [ pyarrow ];
           fss = [ fsspec ];
-          gcp = [
-            gcsfs
-            # TODO: pandas-gqb
-          ];
-          hdf5 = [
-            blosc2
-            tables
-          ];
+          gcp = [ gcsfs ];
+          hdf5 = [ tables ];
           html = [
             beautifulsoup4
             html5lib
@@ -160,10 +158,15 @@ let
           ];
           plot = [ matplotlib ];
           postgresql = [
+            adbc-driver-postgresql
             sqlalchemy
             psycopg2
           ];
-          spss = [ pyreadstat ];
+          spss = [
+            pyreadstat
+            adbc-driver-postgresql
+            # adbc-driver-sqlite
+          ];
           sql-other = [ sqlalchemy ];
           xml = [ lxml ];
         };
