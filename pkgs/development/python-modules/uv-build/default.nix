@@ -19,6 +19,8 @@ buildPythonPackage (finalAttrs: {
     hash = "sha256-nD26zqKMK5LNkeYdqVYteeYL4mYaQQ/QlyjbMDDhLAY=";
   };
 
+  propagatedBuildInputs = [ pkgs.uvBuildVersionSubstituteHook ];
+
   nativeBuildInputs = [
     rustPlatform.cargoSetupHook
     rustPlatform.maturinBuildHook
@@ -41,6 +43,8 @@ buildPythonPackage (finalAttrs: {
 
   # Run the tests of a package built by `uv_build`.
   passthru = {
+    hook = pkgs.uv-build-hook;
+
     tests.built-by-uv = callPackage ./built-by-uv.nix { };
 
     # updateScript is not needed here, as updating is done on staging

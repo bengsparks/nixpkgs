@@ -30,6 +30,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   cargoHash = "sha256-dtkGj/de34HbdFPQbSWBHZGZmif2xQmUS8qqEyFTnmc=";
 
+
   buildInputs = [
     rust-jemalloc-sys
   ];
