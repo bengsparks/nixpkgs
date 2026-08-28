@@ -33,11 +33,12 @@ buildGoModule (finalAttrs: {
     "github.com/pgplex/pgschema/internal/postgres.binariesPath=${postgresql}"
   ];
 
+  __darwinAllowLocalNetworking = true;
+
   doInstallCheck = true;
   nativeInstallCheckInputs = [
     versionCheckHook
   ];
-  versionCheckProgramArg = "--help"; # there is no -v/--version
 
   passthru.updateScript = nix-update-script { };
 
